@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+{% if creating %}
+<h1>Create New Author</h1>
+{% else %}
+<h1>Update Author</h1>
+{% endif %}
+<form action="" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
+{% endblock content %}
