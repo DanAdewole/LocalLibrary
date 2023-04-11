@@ -72,6 +72,7 @@ class AuthorListView(generic.ListView):
     model = Author
     context_object_name = "author_list"
     template_name = "author_list.html"
+    paginate_by = 10
 
 
 class AuthorDetailView(generic.DetailView):
@@ -160,7 +161,6 @@ class AuthorCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['creating'] = True
         return context
-    
     
 
 class AuthorUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
