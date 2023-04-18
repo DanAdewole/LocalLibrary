@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # user application
     'catalog.apps.CatalogConfig',
+    # 3rd party apps
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
