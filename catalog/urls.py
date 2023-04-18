@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("books/", views.BookListView.as_view(), name="books"),
+    path("", views.BookListView.as_view(), name="index"),
+    # path("books/", views.BookListView.as_view(), name="books"),
     path("books/<int:pk>", views.BookDetailView.as_view(), name='book-detail'),
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
@@ -16,4 +16,11 @@ urlpatterns = [
     path('book/create/', views.BookCreate.as_view(), name='book-create'),
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book-update'),
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book-delete'),
+    
+    path('genre/<str:genre>', views.BookGenreListview.as_view(), name='book-genre'),
+    path('book/<int:book_id>/instance/create/', views.BookInstanceCreateView.as_view(), name='bookinstance_create'),
+    path('signup/', views.signup, name='signup'),
+    path('search/', views.SearchResultsView.as_view(), name='book-search'),
+    path('about-me/', views.about_me_view, name="about-me"),
+    path('about-project/', views.about_project_view, name="about-project"),
 ]
