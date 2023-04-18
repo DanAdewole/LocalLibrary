@@ -4,19 +4,18 @@
 
 {% load widget_tweaks %}
 
-{% block title %} <title>Reader | Login</title> {% endblock title %}
+{% block title %} <title>Reader | Sign up</title> {% endblock title %}
 
 {% block content %}
-
 <div class="header text-center">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9 mx-auto">
-				<h1 class="mb-4">Login</h1>
+				<h1 class="mb-4">Sign Up</h1>
 				<ul class="list-inline">
 					<li class="list-inline-item"><a class="text-default" href="{% url 'index' %}">Home
 							&nbsp; &nbsp; /</a></li>
-					<li class="list-inline-item text-primary">Login</li>
+					<li class="list-inline-item text-primary">Sign Up</li>
 				</ul>
 			</div>
 		</div>
@@ -80,46 +79,54 @@
 
 				<div class="content mb-5">
 					<h3 id="we-would-love-to-hear-from-you">
-						{% if next %}
-						{% if user.is_authenticated %}
-						Your account doesn't have access to this page. To proceed, please login with an account that
-						has access
-						{% else %}
-						Please login to continue&hellip;{% endif %}
-						{% else %}
-						Please login with your username and password&hellip;
-						{% endif %}
+						{% comment %} {% if next %} {% endcomment %}
+						Please signup an account&hellip;
+						{% comment %} {% endif %} {% endcomment %}
 					</h3>
-					{% if form.errors %}
+					{% comment %} {% if form.errors %}
 					<p>Your username and password didn't match. Please try again.</p>
-					{% endif %}
+					{% endif %} {% endcomment %}
 				</div>
 
 
-				<form method="POST" action="{% url 'login' %}">
+				<form method="POST" action="{% url 'signup' %}">
 					{% csrf_token %}
 					{% comment %} {{ form.non_field_errors }} {% endcomment %}
 
 					<div class="form-group">
 						{{ form.username.label_tag }}
 						{% comment %} {{ form.username|add_class:"form-control" }} {% endcomment %}
-						{% render_field form.username class="form-control" %}
-
+						{% render_field form.username class="form-control" placeholder="Enter your username" %}
+						{{ form.username.errors }}
 					</div>
+
 					<div class="form-group">
-						{{ form.password.label_tag }}
-						{{ form.password|add_class:"form-control" }}
-
+						{{ form.email.label_tag }}
+						{% comment %} {{ form.username|add_class:"form-control" }} {% endcomment %}
+						{% render_field form.email class="form-control" placeholder="Enter your email" %}
+						{{ form.email.errors }}
 					</div>
 
-					<input type="submit" value="login" class="btn btn-primary">
+					<div class="form-group">
+						{{ form.password1.label_tag }}
+						{% render_field form.password1 placeholder="Enter your password" class="form-control" %}
+						{{ form.password1.errors }}
+					</div>
+
+					<div class="form-group">
+						{{ form.password2.label_tag }}
+						{% comment %} {{ form.password2|add_class:"form-control" }} {% endcomment %}
+						{% render_field form.password2 placeholder="Enter your password again" class="form-control" %}
+						{{ form.password2.errors }}
+					</div>
+
+					<input type="submit" value="sign up" class="btn btn-primary">
 					<input type="hidden" name="next" value="{{ next }}">
 				</form>
 
-				{# Assumes you setup the password_reset view in your URLconf #}
+
 				<div class="content mt-3 fs-2">
-				<p class="post-count"><a href="{% url 'password_reset' %}">Forgot password?</a>
-				</p><p>New here? <a href="{% url 'signup' %}">Sign Up Instead</a>
+				<p><strong>Already Have An Account?</strong> <a href="{% url 'login' %}">Log In Instead</a>
 				</p>
 				</div>
 
@@ -127,5 +134,5 @@
 		</div>
 	</div>
 </section>
-
-{% endblock content %}
+	    
+{% endblock %}
