@@ -1,0 +1,134 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section">
+  <div class="py-4"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8  mb-5 mb-lg-0">
+        <h1 class="h2 mb-4">Books from <mark>{{ genre }}</mark></h1>
+        {% if books %}
+
+        {% for book in books %}
+
+        <article class="card mb-4">
+          <div class="row card-body">
+            <div class="col-12">
+              <h3 class="h4 mb-3"><a class="post-title" href="{{ book.get_absolute_url }}">{{ book.title }}</a></h3>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="{{ book.author.get_absolute_url }}" class="card-meta-author">
+                    {% comment %} <img src="{% static 'images/kate-stone.jpg' %}" alt="Kate Stone">
+                    {% endcomment %}
+                    <span>{{ book.author }}</span>
+                  </a>
+                </li>
+                {% comment %} <li class="list-inline-item">
+                  <i class="ti-timer"></i>2 Min To Read
+                </li> {% endcomment %}
+                {% comment %} <li class="list-inline-item">
+                  <i class="ti-calendar"></i>14 jan, 2020
+                </li> {% endcomment %}
+
+                <li class="list-inline-item">
+                  <ul class="card-meta-tag list-inline">
+                    {% for genre in book.genre.all %}
+                    <li class="list-inline-item"><a href="{% url 'book-genre' genre %}">{{ genre }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+
+              </ul>
+              <p>{{ book.summary }}</p>
+              <a href="{% url 'bookinstance_create' book.id %}" class="btn btn-outline-primary">Borrow</a>
+              {% if perms.catalog.add_book %}
+              <a href="{% url 'book-update' book.pk %}" class="ms-5 btn btn-success">Update</a>
+              <a href="{% url 'book-delete' book.pk %}" class="btn btn-danger">Delete</a>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+
+        {% endfor %}
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center">
+          {% if is_paginated %}
+          <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+            <a class="page-link"
+              href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"
+              aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          {% for page_num in page_obj.paginator.page_range %}
+          <li class="page-item {% if page_num == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+          </li>
+          {% endfor %}
+          <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+            <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}"
+              aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        {% else %}
+        <article class="card mb-4">
+          <div class="row card-body">
+            <div class="col-12">
+              <h3 class="h4 mb-3">No books found</h3>
+
+
+            </div>
+          </div>
+        </article>
+        {% endif %}
+      </div>
+
+      <aside class="col-lg-4 sidebar-inner">
+        <!-- Search -->
+        <div class="widget">
+          <h4 class="widget-title"><span>Search</span></h4>
+          <form action="{% url 'book-search' %}" class="widget-search">
+            <input class="mb-3" id="search-query" name="q" type="search" placeholder="Type &amp; Hit Enter...">
+            <i class="ti-search"></i>
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+          </form>
+        </div>
+
+        <!-- tags -->
+        <div class="widget">
+          <h4 class="widget-title"><span>Tags</span></h4>
+          <ul class="list-inline widget-list-inline widget-card">
+            {% for genre in all_genre %}
+            <li class="list-inline-item"><a href="{% url 'book-genre' genre %}">{{ genre }}</a></li>
+            {% endfor %}
+
+
+          </ul>
+        </div>
+
+
+        <!-- Social -->
+        <div class="widget">
+          <h4 class="widget-title"><span>Social Links</span></h4>
+          <ul class="list-inline widget-social">
+            {% comment %} <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li> {% endcomment %}
+            <li class="list-inline-item"><a target="blank" href="https://twitter.com/AdewoleDaniel15"><i class="ti-twitter-alt"></i></a></li>
+            <li class="list-inline-item"><a target="blank" href="https://linkedin.com/in/daniel-adewole-b27285189/"><i class="ti-linkedin"></i></a></li>
+            <li class="list-inline-item"><a target="blank" href="https://github.com/DanAdewole"><i class="ti-github"></i></a></li>
+            {% comment %} <li class="list-inline-item"><a href="#"><i class="ti-youtube"></i></a></li> {% endcomment %}
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}<title> Authors </title> {% endblock title %}
+{% block title %}<title>BookInstance | Create</title>{% endblock title %}
 
 {% block content %}
 
@@ -10,11 +10,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9 mx-auto">
-        <h1 class="mb-4">Authors</h1>
+        <h1 class="mb-4">Borrow Book</h1>
         <ul class="list-inline">
           <li class="list-inline-item"><a class="text-default" href="{% url 'index' %}">Home
               &nbsp; &nbsp; /</a></li>
-          <li class="list-inline-item text-primary">Authors</li>
+          <li class="list-inline-item text-primary">Borrow Book</li>
         </ul>
       </div>
     </div>
@@ -70,46 +70,49 @@
 
 <section class="section-sm">
   <div class="container">
-    <div class="row no-gutters">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
 
-      {% for author in author_list %}
-      <div class="col-lg-4 col-sm-6 author-block">
-
-        <div class="author-card text-center">
-
-          <img class="author-image"
-            src="https://www.gravatar.com/avatar/e631284a67e89a04627f7c917d0fa145?s=320&pg&d=identicon">
-
-          <h3 class="mb-2"><a href="{{ author.get_absolute_url }}" class="post-title">{{ author.first_name }}
-              {{ author.last_name }}</a></h3>
-          <p class="mb-3">{% if author.date_of_birth %}
-            ( {{ author.date_of_birth }} -
-            {% if author.date_of_death %}
-            {{ author.date_of_death }}
-            {% endif %}
-            )
-            {% endif %}
-          </p>
-
-          <a class="post-count" href="{{ author.get_absolute_url }}"><i class="ti-pencil-alt mr-2"></i><span
-              class="text-primary">{{ author.book_set.count }}</span> Books by this author</a>
-          <ul class="list-inline social-icons">
-
-            <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
-
-            <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
-
-            <li class="list-inline-item"><a href="#"><i class="ti-github"></i></a></li>
-
-            <li class="list-inline-item"><a href="#"><i class="ti-link"></i></a></li>
-
-          </ul>
-
+        <div class="content mb-5">
+          <h2 id="we-would-love-to-hear-from-you">Borrow {{ book }}&hellip;.</h2>
         </div>
 
-      </div>
-      {% endfor %}
+        <form method="POST" action="#">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
 
+          <div class="form-group">
+            <label for="{{ form.imprint.id_for_label }}">Imprint (Required)</label>
+            {{ form.imprint }}
+            <small class="form-text text-muted">{{ form.imprint.help_text }}</small>
+            {{ form.imprint.errors }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.due_back.id_for_label }}">Due back (Required)</label>
+            {{ form.due_back }}
+            <small class="form-text text-muted">{{ form.due_back.help_text }}</small>
+            {{ form.due_back.errors }}
+            
+          </div>
+
+          {% comment %} <div class="form-group">
+            <label for="email">Reason For Contact</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Advertising">
+          </div> {% endcomment %}
+          {% comment %} <div class="form-group">
+            <label for="message">Your Message Here</label>
+            <textarea name="message" id="message" class="form-control"
+              placeholder="Lorem ipsum dolor sit amet..."></textarea>
+          </div> {% endcomment %}
+          <input type="submit" value="submit" class="btn btn-primary">
+        </form>
+
+        {% comment %} <div class="form-group">
+          <label for="{{ form.status.id_for_label }}">Status:</label>
+          {{ form.status }}
+        </div> {% endcomment %}
+
+      </div>
     </div>
   </div>
 </section>

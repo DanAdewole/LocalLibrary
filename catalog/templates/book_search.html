@@ -1,0 +1,82 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block title %} <title>Reader | Book Search</title> {% endblock title %}
+
+{% block content %}
+
+<div class="py-3"></div>
+
+{% if book_search %}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 mb-4">
+        <h1 class="h2 mb-4">Search results for
+          <mark>{{ search_term }}</mark>
+        </h1>
+      </div>
+      <div class="col-lg-10">
+        
+        {% for book in book_search %}
+        <article class="card mb-4">
+          <div class="row card-body">
+            <div class="col-12">
+              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{ book.title }}</a></h3>
+              <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                  <a href="{{ book.author.get_absolute_url }}" class="card-meta-author">
+                    {% comment %} <img src="images/kate-stone.jpg" alt="Kate Stone"> {% endcomment %}
+                    <span>{{ book.author }}</span>
+                  </a>
+                </li>
+                {% comment %} <li class="list-inline-item">
+                  <i class="ti-timer"></i>2 Min To Read
+                </li> {% endcomment %}
+                {% comment %} <li class="list-inline-item">
+                  <i class="ti-calendar"></i>14 jan, 2020
+                </li> {% endcomment %}
+                <li class="list-inline-item">
+                  <ul class="card-meta-tag list-inline">
+                    {% for genre in book.genre.all %}
+                    <li class="list-inline-item"><a href="{% url 'book-genre' genre %}">{{ genre }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              </ul>
+              <p>{{ book.summary }}</p>
+              <a href="{% url 'bookinstance_create' book.id %}" class="btn btn-outline-primary">Borrow</a>
+              {% if perms.catalog.add_book %}
+              <a href="{% url 'book-update' book.pk %}" class="ms-5 btn btn-success">Update</a>
+              <a href="{% url 'book-delete' book.pk %}" class="btn btn-danger">Delete</a>
+              {% endif %}            </div>
+          </div>
+        </article>
+        {% endfor %}
+
+        {% else %}
+        <section class="section">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-10 mb-4">
+                <h1 class="h2 mb-4">Search results for 
+                  <mark>
+                    {{ search_term }}
+                  </mark>
+                </h1>
+              </div>
+              <div class="col-lg-10 text-center">
+                <img class="mb-5" src="{% static 'images/no-search-found.svg  ' %}" alt="">
+                <h3>No Search Found</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
