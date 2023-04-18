@@ -76,7 +76,7 @@ class AuthorCreateViewTest(TestCase):
         login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
         response = self.client.get(reverse("author-create"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/author_form.html")
+        self.assertTemplateUsed(response, "author_form.html")
     
     def test_view_only_accessible_to_logged_in_users(self):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
@@ -180,7 +180,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
 
         # Check we used correct template
         self.assertTemplateUsed(
-            response, "catalog/bookinstance_list_borrowed_user.html"
+            response, "bookinstance_list.html"
         )
 
     def test_only_borrowed_books_in_list(self):
@@ -355,7 +355,7 @@ class RenewBookInstancesViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Check we used correct template
-        self.assertTemplateUsed(response, "catalog/book_renew_librarian.html")
+        self.assertTemplateUsed(response, "book_renew_librarian.html")
 
     def test_form_renewal_date_initially_has_date_three_weeks_in_future(self):
         login = self.client.login(username="testuser2", password="2HJ1vRV0Z&3iD")
