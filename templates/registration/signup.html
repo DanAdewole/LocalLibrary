@@ -97,27 +97,54 @@
 						{{ form.username.label_tag }}
 						{% comment %} {{ form.username|add_class:"form-control" }} {% endcomment %}
 						{% render_field form.username class="form-control" placeholder="Enter your username" %}
-						{{ form.username.errors }}
+						{% comment %} {% render_field form.username.errors class="text-danger" %} {% endcomment %}
+						{% if form.username.errors %}
+						<ul class="text-danger">
+							{% for error in form.username.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 
 					<div class="form-group">
 						{{ form.email.label_tag }}
 						{% comment %} {{ form.username|add_class:"form-control" }} {% endcomment %}
 						{% render_field form.email class="form-control" placeholder="Enter your email" %}
-						{{ form.email.errors }}
+						{% comment %} {% render_field form.email.errors class="text-danger" %} {% endcomment %}
+						{% if form.email.errors %}
+						<ul class="text-danger">
+							{% for error in form.email.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 
 					<div class="form-group">
 						{{ form.password1.label_tag }}
 						{% render_field form.password1 placeholder="Enter your password" class="form-control" %}
-						{{ form.password1.errors }}
+						{% if form.password1.errors %}
+						<ul class="text-danger">
+							{% for error in form.password1.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 
 					<div class="form-group">
 						{{ form.password2.label_tag }}
 						{% comment %} {{ form.password2|add_class:"form-control" }} {% endcomment %}
 						{% render_field form.password2 placeholder="Enter your password again" class="form-control" %}
-						{{ form.password2.errors }}
+						{% comment %} {% render_field form.password2.errors class="text-danger" %} {% endcomment %}
+						{% if form.password2.errors %}
+						<ul class="text-danger">
+							{% for error in form.password2.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 
 					<input type="submit" value="sign up" class="btn btn-primary">
@@ -126,13 +153,13 @@
 
 
 				<div class="content mt-3 fs-2">
-				<p><strong>Already Have An Account?</strong> <a href="{% url 'login' %}">Log In Instead</a>
-				</p>
+					<p><strong>Already Have An Account?</strong> <a href="{% url 'login' %}">Log In Instead</a>
+					</p>
 				</div>
 
 			</div>
 		</div>
 	</div>
 </section>
-	    
+
 {% endblock %}
