@@ -98,26 +98,52 @@
 						<label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
 						{% render_field form.first_name placeholder="The Author First Name" class="form-control" %}
 						<small class="form-text text-muted">{{ form.first_name.help_text }}</small>
-						{{ form.first_name.errors }}
+						{% if form.first_name.errors %}
+						<ul class="text-danger">
+							{% for error in form.first_name.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 					
 					<div class="form-group">
 						<label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
 						{% render_field form.last_name placeholder="The Author Last Name" class="form-control" %}
 						<small class="form-text text-muted">{{ form.last_name.help_text }}</small>
-						{{ form.last_name.errors }}
+						{% if form.last_name.errors %}
+						<ul class="text-danger">
+							{% for error in form.last_name.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.date_of_birth.id_for_label }}">{{ form.date_of_birth.label }}</label>
 						{% render_field form.date_of_birth class="form-control" type="date" %}
 						<small class="form-text text-muted">{{ form.date_of_birth.help_text|safe }}</small>
-						{{ form.date_of_birth.errors }}
+						{% if form.date_of_birth.errors %}
+						<ul class="text-danger">
+							{% for error in form.date_of_birth.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.date_of_death.id_for_label }}">{{ form.date_of_death.label }}</label>
 						{% render_field form.date_of_death class="form-control" type="date" %}
 						<small class="form-text text-muted">{{ form.date_of_death.help_text|safe }}</small>
-						{{ form.date_of_death.errors }}
+						{% if form.date_of_death.errors %}
+						<ul class="text-danger">
+							{% for error in form.date_of_death.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 
 					<input type="submit" value="Submit" class="btn btn-primary">

@@ -100,37 +100,78 @@
 						{% comment %} {{ form.title|add_class:"form-control" }} {% endcomment %}
 						{% render_field form.title placeholder="The title of the book" class="form-control" %}
 						<small class="form-text text-muted">{{ form.title.help_text }}</small>
-						{{ form.title.errors }}
+						{% if form.title.errors %}
+						<ul class="text-danger">
+							{% for error in form.title.errors %}
+							<ul>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.author.id_for_label }}">{{ form.author.label }}</label>
 						{{ form.author|add_class:"form-control" }}
 						<small class="form-text text-muted">{{ form.author.help_text }}</small>
-						{{ form.author.errors }}
+						{% if form.author.errors %}
+						<ul class="text-danger">
+							{% for error in form.author.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.summary.id_for_label }}">{{ form.summary.label }}</label>
 						{% render_field form.summary placeholder="A brief summary about the book" class="form-control" %}
 						<small class="form-text text-muted">{{ form.summary.help_text }}</small>
-						{{ form.summary.errors }}
+						{% if form.summary.errors %}
+						<ul class="text-danger">
+							{% for error in form.summary.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.isbn.id_for_label }}">{{ form.isbn.label }}</label>
 						{% render_field form.isbn class="form-control" %}
 						<small class="form-text text-muted">{{ form.isbn.help_text|safe }}</small>
-						{{ form.isbn.errors }}
+						{% if form.isbn.errors %}
+						<ul class="text-danger">
+							{% for error in form.isbn.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.genre.id_for_label }}">{{ form.genre.label }}</label>
 						{% render_field form.genre class="form-control" %}
 						<small class="form-text text-muted">{{ form.genre.help_text|safe }}</small>
-						{{ form.genre.errors }}
+						{% if form.genre.errors %}
+						<ul class="text-danger">
+							{% for error in form.genre.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
+
 					<div class="form-group">
 						<label for="{{ form.language.id_for_label }}">{{ form.language.label }}</label>
 						{% render_field form.language class="form-control" %}
 						<small class="form-text text-muted">{{ form.language.help_text|safe }}</small>
-						{{ form.language.errors }}
+						{% if form.language.errors %}
+						<ul class="text-danger">
+							{% for error in form.language.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 					</div>
 
 					<input type="submit" value="Submit" class="btn btn-primary">
