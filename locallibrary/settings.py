@@ -32,7 +32,7 @@ DEBUG = os.getenv("DEBUG", True)
 
 ALLOWED_HOSTS = ['reader-production-eb1.up.railway.app', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://reader-production-eb1.up.railway.app']
 
 # Application definition
 
