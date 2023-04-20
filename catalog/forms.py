@@ -74,20 +74,18 @@ class CreateBookInstanceForm(ModelForm):
     class Meta:
         model = BookInstance
         fields = ["imprint", "due_back"]
-        labels = (
-            {
+        labels = {
                 "due_back": _("Renewal date"),
                 "imprint": _("Imprint"),
             },
-        )
-        help_texts = (
-            {
-                "due_back": _(
-                    "Enter a date between now and 4 weeks to return the borrowed book."
-                ),
-                "imprint": _("Enter the publisher or imprint of the book."),
-            },
-        )
+        
+        help_texts = {
+            "due_back": _(
+                "Enter a date between now and 4 weeks to return the borrowed book."
+            ),
+            "imprint": _("Enter the publisher or edition of the book you want to borrow."),
+        }
+        
         widgets = {
             "status": forms.HiddenInput(attrs={"value": "o"}),
             'due_back': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'required': True}),

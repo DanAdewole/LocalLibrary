@@ -97,6 +97,7 @@ class BookInstanceCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(BookInstanceCreateView, self).get_context_data(**kwargs)
         context["book"] = Book.objects.get(pk=self.kwargs['book_id'])
+        context["form"] = self.get_form()
         return context
 
 
