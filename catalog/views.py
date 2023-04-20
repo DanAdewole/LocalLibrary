@@ -146,7 +146,7 @@ class LoanedBooksAllListView(LoginRequiredMixin, PermissionRequiredMixin, generi
 class BookGenreListview(generic.ListView):
     template_name = "book_list_by_genre.html"
     context_object_name = "books"
-    paginate_by = 6
+    paginate_by = 5
     
     def get_queryset(self):
         genre = self.kwargs["genre"]
