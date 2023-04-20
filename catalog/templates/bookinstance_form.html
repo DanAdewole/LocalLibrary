@@ -85,14 +85,26 @@
             <label for="{{ form.imprint.id_for_label }}">Imprint (Required)</label>
             {{ form.imprint }}
             <small class="form-text text-muted">{{ form.imprint.help_text }}</small>
-            {{ form.imprint.errors }}
+            {% if form.imprint.errors %}
+						<ul class="text-danger">
+							{% for error in form.imprint.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
           </div>
+
           <div class="form-group">
             <label for="{{ form.due_back.id_for_label }}">Due back (Required)</label>
             {{ form.due_back }}
-            <small class="form-text text-muted">{{ form.due_back.help_text }}</small>
-            {{ form.due_back.errors }}
-            
+            <small class="form-text text-muted">{{ form.due_back.help_text }}</small> 
+            {% if form.due_back.errors %}
+						<ul class="text-danger">
+							{% for error in form.due_back.errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
           </div>
 
           {% comment %} <div class="form-group">
