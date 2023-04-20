@@ -116,7 +116,7 @@ class CustomUserCreationForm(UserCreationForm):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("This email is already in use. Please choose a different email")
-        raise email
+        return email
         
     def save(self, commit=True):
         user = super(CustomUserCreationForm, self).save(commit=False)
