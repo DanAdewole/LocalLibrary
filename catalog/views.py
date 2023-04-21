@@ -21,14 +21,14 @@ from catalog.forms import (
     CustomUserCreationForm,
 )
 
-# Environment variables
-from dotenv import load_dotenv
+# # Environment variables
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-# 3rd party packages
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+# # 3rd party packages
+# from sendgrid import SendGridAPIClient
+# from sendgrid.helpers.mail import Mail
 
 
 # def index(request):
