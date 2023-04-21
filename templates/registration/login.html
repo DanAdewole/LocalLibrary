@@ -118,7 +118,7 @@
 
 				{# Assumes you setup the password_reset view in your URLconf #}
 				<div class="content mt-3 fs-2">
-				<p class="post-count"><a href="{% url 'password_reset' %}">Forgot password?</a>
+				{% comment %} <p class="post-count"><a href="{% url 'password_reset' %}">Forgot password?</a> {% endcomment %}
 				</p><p>New here? <a href="{% url 'signup' %}">Sign Up Instead</a>
 				</p>
 				</div>
