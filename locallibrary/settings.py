@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-%o@_jqrap2@%#uojy8@gmt&rdurh=9obg4j=bm3)e+(s1-kfk@')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ['reader-production-eb1.up.railway.app', '127.0.0.1']
 
@@ -140,8 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # SECURE_SSL_REDIRECT = True
 
 db_from_env = dj_database_url.config(
@@ -153,3 +151,19 @@ DATABASES['default'].update(db_from_env)
 
 # For whitenoise cacheable files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Use the SMTP email backend
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# # SMTP settings for SendGrid
+# DEFAULT_FROM_EMAIL=os.getenv('FROM_EMAIL')
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'apikey'
+# # EMAIL_HOST_PASSWORD = os.getenv("SENDGRID_API_KEY")  # Retrieve SendGrid API key from environment variable
+
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
