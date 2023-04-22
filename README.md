@@ -13,8 +13,8 @@ The app is also tested extensively, making sure most parts of the app behave as 
 
 Follow the link below to view the deployed version of the app
 <p>
-[Live Link](https://reader-production-eb1.up.railway.app/catalog/)
-</p>
+https://reader-production-eb1.up.railway.app/catalog/
+
 ## Reader Preview
 ![Reader_Home_Page](https://raw.githubusercontent.com/DanAdewole/LocalLibrary/main/catalog/static/images/home-page.jpg)
 
