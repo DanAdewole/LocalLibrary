@@ -88,3 +88,5 @@ python manage.py runserver
 ```
 
 
+# License
+This project is under an [MIT LICENSE](license.md)
