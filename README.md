@@ -12,12 +12,13 @@ The app is also tested extensively, making sure most parts of the app behave as 
 <p><strong> Live link </strong></p>
 
 Follow the link below to view the deployed version of the app
-[Live](https://reader-production-eb1.up.railway.app/catalog/)
-
+<p>
+[Live Link](https://reader-production-eb1.up.railway.app/catalog/)
+</p>
 ## Reader Preview
 ![Reader_Home_Page](https://raw.githubusercontent.com/DanAdewole/LocalLibrary/main/catalog/static/images/home-page.jpg)
 
-<p>The page fro logged in users to borrow books.</p>
+<p>The page for logged in users to borrow books.</p>
 
 ![Reader_Borrow-page](https://raw.githubusercontent.com/DanAdewole/LocalLibrary/main/catalog/static/images/borrow-page.jpg)
 
