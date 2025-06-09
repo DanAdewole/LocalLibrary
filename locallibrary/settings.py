@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from urllib.parse import urlparse
 import dj_database_url
 import os
 
@@ -30,6 +31,17 @@ SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-%o@_jqrap2@%#uojy8@gmt&rdu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
+# APPENGINE_URL = os.getenv('APPENGINE_URL', default=None)
+# if APPENGINE_URL:
+#     # ensure a scheme is present in the URL before it's processed.
+#     if not urlparse(APPENGINE_URL).scheme:
+#         APPENGINE_URL = f'https://{APPENGINE_URL}'
+
+#     ALLOWED_HOSTS = [urlparse(APPENGINE_URL).netloc]
+#     CSRF_TRUSTED_ORIGINS = [APPENGINE_URL]
+#     SECURE_SSL_REDIRECT = True
+# else:
+#     ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['reader-production-eb1.up.railway.app', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://reader-production-eb1.up.railway.app']
@@ -105,6 +117,7 @@ DATABASES = {
     }
 }
 
+print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -153,12 +166,12 @@ LOGIN_REDIRECT_URL = '/'
 
 # SECURE_SSL_REDIRECT = True
 
-db_from_env = dj_database_url.config(
-    conn_max_age=500,
-    conn_health_checks=True,
-)
+# db_from_env = dj_database_url.config(
+#     conn_max_age=500,
+#     conn_health_checks=True,
+# )
 
-DATABASES['default'].update(db_from_env)
+# DATABASES['default'].update(db_from_env)
 
 # For whitenoise cacheable files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
